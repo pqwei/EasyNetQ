@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RabbitMQHelper {
+
     /// <summary>
     /// 消息服务器连接器
     /// </summary>
