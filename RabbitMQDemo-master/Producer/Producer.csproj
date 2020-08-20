@@ -167,13 +167,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{ce55dbe0-3d55-48ba-ab33-5d1ea07b605e}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RabbitMQHelper\RabbitMQHelper.csproj">
-      <Project>{85e76c76-3f1e-4dcf-8abd-ee065e4a0ec9}</Project>
-      <Name>RabbitMQHelper</Name>
+    <ProjectReference Include="..\EasyNetQ.Message\EasyNetQ.Message.csproj">
+      <Project>{4dcbcf18-9b87-4751-85aa-9c650a382c3b}</Project>
+      <Name>EasyNetQ.Message</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

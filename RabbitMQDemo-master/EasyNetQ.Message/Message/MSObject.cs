@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model
+namespace EasyNetQ.Message.Message
 {
-    public class MSObject
+    public class MSObject : BaseMessage
     {
         public string Name { get; set; }
         public int Age { get; set; } = 0;
-        public DateTime AddTime { get; set; } = DateTime.Now;
     }
 }

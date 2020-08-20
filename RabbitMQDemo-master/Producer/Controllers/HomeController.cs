@@ -1,5 +1,5 @@
-﻿using Model;
-using RabbitMQHelper;
+﻿using EasyNetQ.Message.Helper;
+using EasyNetQ.Message.Message;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -194,6 +194,25 @@ namespace Producer.Controllers
             return Content("Bingo!");
         }
         #endregion
+
+
+        /// <summary>
+        /// Fanout 消息上报=>对象
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Fanout_Test_Obj2()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                var time = DateTime.Now.ToString("HHmmss");
+                var msg = string.Empty;
+                MQHelperFactory.Default().FanoutPush(new TestMessage
+                {
+                    Name = $"我只是个Test_{time}_{i}",
+                });
+            }
+            return Content("Bingo!");
+        }
 
     }
 }

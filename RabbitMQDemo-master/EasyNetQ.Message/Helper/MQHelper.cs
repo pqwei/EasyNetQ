@@ -1,5 +1,6 @@
 ﻿using EasyNetQ;
 using EasyNetQ.FluentConfiguration;
+using EasyNetQ.Message.Helper;
 using EasyNetQ.Topology;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RabbitMQHelper {
+namespace EasyNetQ.Message.Helperr
+{
     public class MQHelper: BusBuilder {
         public MQHelper(string host) : base(host) {
         }
@@ -242,10 +244,53 @@ namespace RabbitMQHelper {
             });
         }
 
-        
+
 
         #endregion
 
+
+        /// <summary>
+        ///  消息消耗（fanout）
+        /// </summary>`
+        /// <typeparam name="T">消息类型</typeparam>
+        /// <param name="handler">回调</param>
+        /// <param name="exChangeName">交换器名</param>
+        /// <param name="queueName">队列名</param>
+        /// <param name="routingKey">路由名</param>
+        public void FanoutConsume<T>(Action<T> handler) where T : class
+        {
+            try
+            {
+                var bus = CreateMessageBus();
+                bus.Subscribe<T>("my_subscription_id", message => handler(message));
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.ToString();
+            }
+        }
+        /// <summary>
+        /// 消息上报（fanout）
+        /// </summary>
+        /// <typeparam name="T">消息类型</typeparam>
+        /// <param name="topic">主题名</param>
+        /// <param name="t">消息命名</param>
+        /// <param name="msg">错误信息</param>
+        /// <returns></returns>
+        public void FanoutPush<T>(T t) where T : class
+        {
+            try
+            {
+                using (var bus = CreateMessageBus())
+                {
+                    bus.Publish(t);
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.ToString();
+            }
+        }
 
     }
 }
