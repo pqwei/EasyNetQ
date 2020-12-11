@@ -52,7 +52,9 @@
     <Compile Include="Helper\BusBuilder.cs" />
     <Compile Include="Helper\MQHelper.cs" />
     <Compile Include="Helper\MQHelperFactory.cs" />
+    <Compile Include="Message\BaseMessage.cs" />
     <Compile Include="Message\MSObject.cs" />
+    <Compile Include="Message\TestMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
